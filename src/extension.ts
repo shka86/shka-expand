@@ -17,7 +17,8 @@ export function activate(context: vscode.ExtensionContext) {
             return;
         }
 
-        // Save the current visible range
+        // Save the current cursor position and visible range
+        const currentCursorPosition = editor.selection.active;
         const currentVisibleRanges = editor.visibleRanges;
 
         const document = editor.document;
@@ -38,7 +39,8 @@ export function activate(context: vscode.ExtensionContext) {
             });
         });
 
-        // After all folds are done, restore the visible range
+        // After all folds are done, restore the cursor position and visible range
+        editor.selection = new vscode.Selection(currentCursorPosition, currentCursorPosition);
         editor.revealRange(currentVisibleRanges[0], vscode.TextEditorRevealType.AtTop);
 
     });

@@ -19,6 +19,19 @@
             {
                 "command": "shka-expand.collapseRowsWithPattern",
                 "title": "Collapse Rows with [x] Pattern"
+            },
+            {
+                "command": "shka-expand.sortChunks",
+                "title": "Sort Chunks"
+            }
+        ],
+        "keybindings": [{
+                "command": "shka-expand.collapseRowsWithPattern",
+                "key": "ctrl+k ctrl+k"
+            },
+            {
+                "command": "shka-expand.sortChunks",
+                "key": "ctrl+k ctrl+l"
             }
         ]
     },

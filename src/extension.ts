@@ -9,15 +9,16 @@ export function activate(context: vscode.ExtensionContext) {
     });
 
     // This is the new command for collapsing rows with the [x] pattern
-    let collapseRowsDisposable = vscode.commands.registerCommand('shka-expand.collapseRowsWithPattern', () => {
+
+    let collapseRowsDisposable = vscode.commands.registerCommand('shka-expand.collapseRowsWithPattern', async () => {
         const editor = vscode.window.activeTextEditor;
         if (!editor) {
             vscode.window.showInformationMessage('No active editor to collapse rows in');
             return;
         }
 
-        // Save the current cursor position
-        const currentCursorPosition = editor.selection.active;
+        // Save the current visible range
+        const currentVisibleRanges = editor.visibleRanges;
 
         const document = editor.document;
         const linesToCollapse: number[] = [];
@@ -30,15 +31,16 @@ export function activate(context: vscode.ExtensionContext) {
         }
 
         // Fold the regions
-        editor.edit(() => {
+        await editor.edit(editBuilder => {
             linesToCollapse.forEach(line => {
                 editor.selection = new vscode.Selection(line, 0, line, 0);
                 vscode.commands.executeCommand('editor.fold');
             });
-
-            // After all folds are done, restore the cursor position
-            editor.selection = new vscode.Selection(currentCursorPosition, currentCursorPosition);
         });
+
+        // After all folds are done, restore the visible range
+        editor.revealRange(currentVisibleRanges[0], vscode.TextEditorRevealType.AtTop);
+
     });
 
     // Push both commands to the subscriptions

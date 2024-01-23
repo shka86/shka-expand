@@ -1,71 +1,34 @@
-# shka-expand README
+# shka-expand VS Code Extension
 
-This is the README for your extension "shka-expand". After writing up a brief description, we recommend including the following sections.
+## Overview
+`shka-expand` is a Visual Studio Code extension designed to enhance your productivity by simplifying the management of your todo lists. With intuitive features and seamless integration into VS Code, managing your tasks has never been easier.
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+### Collapse Rows with `[x]` Pattern
+Efficiently manage your todo list by collapsing rows that contain the `[x]` pattern. This feature allows you to focus on the most relevant tasks and keep your workspace organized. Whenever a row in your file includes the `[x]` pattern, `shka-expand` offers a straightforward way to collapse these rows, decluttering your view and letting you concentrate on what's important.
 
-For example if there is an image subfolder under your extension project workspace:
+### Usage
+Using `shka-expand` is simple and integrates smoothly into your existing VS Code workflow. 
 
-\!\[feature X\]\(images/feature-x.png\)
+1. **Collapse Rows with `[x]` Pattern**
+   - Open the command palette (`Ctrl+Shift+P` on Windows/Linux, `Cmd+Shift+P` on macOS).
+   - Type `Collapse Rows with [x] Pattern` and hit `Enter`.
+   - Any line containing the `[x]` pattern will be collapsed, helping you streamline your todo list.
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+## Installation
+1. Download the `.vsix` file of the `shka-expand` extension.
+2. Open Visual Studio Code.
+3. Go to the Extensions view by clicking on the Extensions icon or pressing `Ctrl+Shift+X`.
+4. Click on the `...` at the top of the Extensions view and select `Install from VSIX...`.
+5. Locate the downloaded `.vsix` file and select it.
+6. `shka-expand` is now installed and ready to use!
 
-## Requirements
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+## Licence
 
-## Extension Settings
+[MIT](https://github.com/shka86/foo/blob/master/LICENCE)
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+## Author
 
-For example:
-
-This extension contributes the following settings:
-
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
-
-## Known Issues
-
-Calling out known issues can help limit users opening duplicate issues against your extension.
-
-## Release Notes
-
-Users appreciate release notes as you update your extension.
-
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
----
-
-## Following extension guidelines
-
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+[shka86](https://github.com/shka86)

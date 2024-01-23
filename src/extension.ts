@@ -16,6 +16,9 @@ export function activate(context: vscode.ExtensionContext) {
             return;
         }
 
+        // Save the current cursor position
+        const currentCursorPosition = editor.selection.active;
+
         const document = editor.document;
         const linesToCollapse: number[] = [];
 
@@ -32,6 +35,9 @@ export function activate(context: vscode.ExtensionContext) {
                 editor.selection = new vscode.Selection(line, 0, line, 0);
                 vscode.commands.executeCommand('editor.fold');
             });
+
+            // After all folds are done, restore the cursor position
+            editor.selection = new vscode.Selection(currentCursorPosition, currentCursorPosition);
         });
     });
 

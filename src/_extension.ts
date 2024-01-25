@@ -3,7 +3,7 @@ import * as vscode from 'vscode';
 export function activate(context: vscode.ExtensionContext) {
     console.log('Your extension "shka-expand" is now active!');
 
-    let SortAndCollapse = vscode.commands.registerCommand('shka-expand.SortAndCollapse', async () => {
+    let collapseRowsDisposable = vscode.commands.registerCommand('shka-expand.collapseRowsWithPattern', async () => {
         const editor = vscode.window.activeTextEditor;
         if (!editor) {
             vscode.window.showInformationMessage('No active editor to process');
@@ -25,12 +25,12 @@ export function activate(context: vscode.ExtensionContext) {
         }
 
         // Expand all regions before folding specific lines
-        await vscode.commands.executeCommand('editor.unfoldAll');
+    await vscode.commands.executeCommand('editor.unfoldAll');
 
-        // Give the editor a moment to process the unfold command
-        await new Promise(resolve => setTimeout(resolve, 500));
+    // Give the editor a moment to process the unfold command
+    await new Promise(resolve => setTimeout(resolve, 500));
 
-        // Fold the regions with [x] pattern
+    // Fold the regions with [x] pattern
         await editor.edit(editBuilder => {
             linesToCollapse.forEach(line => {
                 editor.selection = new vscode.Selection(line, 0, line, 0);
@@ -42,9 +42,21 @@ export function activate(context: vscode.ExtensionContext) {
         editor.selection = new vscode.Selection(currentCursorPosition, currentCursorPosition);
         editor.revealRange(currentVisibleRanges[0], vscode.TextEditorRevealType.AtTop);
 
+    });
 
-        // -----------------------------------
-        // const document = editor.document;
+    // Push both commands to the subscriptions
+    context.subscriptions.push(collapseRowsDisposable);
+
+    // -----------------------------------
+
+    let sortChunksDisposable = vscode.commands.registerCommand('shka-expand.sortChunks', () => {
+        const editor = vscode.window.activeTextEditor;
+        if (!editor) {
+            vscode.window.showInformationMessage('No active editor to sort chunks in');
+            return;
+        }
+
+        const document = editor.document;
         const fullText = document.getText();
 
         // Split the document into chunks
@@ -70,7 +82,7 @@ export function activate(context: vscode.ExtensionContext) {
         chunk1.sort((a, b) => b.localeCompare(a));
         chunk2.sort((a, b) => b.localeCompare(a));
 
-        // Prepend '## [' to each sorted chunk and ensure it ends with exactly one newline
+// Prepend '## [' to each sorted chunk and ensure it ends with exactly one newline
         const processChunks = (chunks: string[]) => chunks.map(chunk => {
             chunk = '## [' + chunk.trimEnd();
             chunk += '\n\n'; // Append exactly one newline
@@ -91,11 +103,7 @@ export function activate(context: vscode.ExtensionContext) {
         });
     });
 
-    // -----------------------------------
-    // Push both commands to the subscriptions
-    context.subscriptions.push(SortAndCollapse);
-
-
+    context.subscriptions.push(sortChunksDisposable);
 
 }
 

@@ -13,27 +13,13 @@
     "main": "./out/extension.js",
     "contributes": {
         "commands": [{
-                "command": "shka-expand.helloWorld",
-                "title": "Hello World"
-            },
-            {
-                "command": "shka-expand.collapseRowsWithPattern",
-                "title": "Collapse Rows with [x] Pattern"
-            },
-            {
-                "command": "shka-expand.sortChunks",
-                "title": "Sort Chunks"
-            }
-        ],
+            "command": "shka-expand.SortAndCollapse",
+            "title": "Collapse Rows with [x] Pattern and sort chunks"
+        }],
         "keybindings": [{
-                "command": "shka-expand.collapseRowsWithPattern",
-                "key": "ctrl+k ctrl+k"
-            },
-            {
-                "command": "shka-expand.sortChunks",
-                "key": "ctrl+k ctrl+l"
-            }
-        ]
+            "command": "shka-expand.SortAndCollapse",
+            "key": "ctrl+k ctrl+k"
+        }]
     },
     "scripts": {
         "vscode:prepublish": "npm run compile",

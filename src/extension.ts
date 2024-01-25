@@ -31,7 +31,13 @@ export function activate(context: vscode.ExtensionContext) {
             }
         }
 
-        // Fold the regions
+        // Expand all regions before folding specific lines
+    await vscode.commands.executeCommand('editor.unfoldAll');
+
+    // Give the editor a moment to process the unfold command
+    await new Promise(resolve => setTimeout(resolve, 500));
+
+    // Fold the regions with [x] pattern
         await editor.edit(editBuilder => {
             linesToCollapse.forEach(line => {
                 editor.selection = new vscode.Selection(line, 0, line, 0);

@@ -24,6 +24,13 @@ export function activate(context: vscode.ExtensionContext) {
             }
         }
 
+        for (let line = 0; line < document.lineCount; line++) {
+            const lineText = document.lineAt(line).text;
+            if (lineText.includes('```')) {
+                linesToCollapse.push(line);
+            }
+        }
+
         // Expand all regions before folding specific lines
         await vscode.commands.executeCommand('editor.unfoldAll');
 

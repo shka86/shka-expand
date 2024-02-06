@@ -35,7 +35,7 @@ export function activate(context: vscode.ExtensionContext) {
         await vscode.commands.executeCommand('editor.unfoldAll');
 
         // Give the editor a moment to process the unfold command
-        await new Promise(resolve => setTimeout(resolve, 3000));
+        await new Promise(resolve => setTimeout(resolve, 300));
 
         // Fold the regions with [x] pattern
         await editor.edit(editBuilder => {
